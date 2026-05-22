@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SwiftPay POS Terminal</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f9; padding: 50px; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+        input { padding: 10px; font-size: 16px; width: 200px; border: 1px solid #ccc; border-radius: 50px; text-align: center; }
+        button { padding: 10px 20px; font-size: 16px; background: #28a745; color: white; border: none; border-radius: 50px; cursor: pointer; margin-left: 10px; }
+        .qr-box { margin-top: 30px; padding: 20px; background: #fff; border: 2px dashed #ccc; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>💸 SwiftPay POS Terminal</h2>
+        <form method="POST">
+            <input type="number" name="amount" placeholder="Enter Amount (KES)" required min="1">
+            <button type="submit">Generate QR</button>
+        </form>
+
+        {% if qr_img %}
+        <div class="qr-box">
+            <h3>Scan to Pay KES {{ amount }}</h3>
+            <img src="data:image/png;base64,{{ qr_img }}" alt="M-Pesa QR Code"><br>
+            <small style="color: gray;">🔒 Secured via SHA-256 Signature</small>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
