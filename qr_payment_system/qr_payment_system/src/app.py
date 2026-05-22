@@ -37,4 +37,6 @@ def pos_terminal():
     return render_template('index.html', qr_img=qr_img, amount=amount)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Render assigns a dynamic port, default to 5000 locally
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
